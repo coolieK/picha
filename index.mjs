@@ -32,7 +32,7 @@ for (var i = 0; i < imgChunks.length; i++) {
       imgId: 1,
       imgPart: i,
       imageValue: imgChunks[i],
-      comment: 'Beautiful Nairobi',
+      comment: 'Reach logo',
     }),
   ]);
   //console.log(`Chunk: ${i} saved!`);
