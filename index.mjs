@@ -1,56 +1,29 @@
 import { loadStdlib } from '@reach-sh/stdlib';
 import * as backend from './build/index.main.mjs';
-import { imgBase64String } from './image.js';
 
 const stdlib = loadStdlib();
 
-const imageOwner = await stdlib.newTestAccount(stdlib.parseCurrency(100));
+const owner = await stdlib.newTestAccount(stdlib.parseCurrency(100));
 
 
-const ctcImage = [];
-
-const stringToChunks = (str, chunkSize) => {
-  const chunks = [];
-  while (str.length > 0) {
-    chunks.push(str.substring(0, chunkSize));
-    str = str.substring(chunkSize, str.length);
-  }
-  return chunks
-}
+const ctcPhotos = owner.contract(backend);
 
 
-console.log(`---------------->[💾 Saving the image 💾] ---------------->`);
-
-let imgChunks = stringToChunks(imgBase64String, 800);
-console.log(`Chunk length: ${imgChunks.length}`);
-console.log(`Please wait ...`);
-
-for (var i = 0; i < imgChunks.length; i++) {
-  ctcImage[i] = imageOwner.contract(backend);
+console.log(`---------------->[💾 Saving the photo 💾] ---------------->`);
   await Promise.all([
-    ctcImage[i].participants.ImgSave({
-      imgId: 1,
-      imgPart: i,
-      imageValue: imgChunks[i],
-      comment: 'Reach logo',
+    ctcPhotos.p.AddPhoto({
+      photoId: 1,
+      ipfsHash: "QmYWYsL1qLEfB5P9fsMYrWYW1xJ36RMfmYdzCerBfuKBdX",
+      comment: 'Diani Beach Kenya',
     }),
   ]);
-  //console.log(`Chunk: ${i} saved!`);
-}
 
 
-console.log(`<----------------[📷 Getting the image📷 ] <----------------`);
-var imageValueFromNetwork = '';
-for (var i = 0; i < imgChunks.length; i++) {
+console.log(`<----------------[📷 Getting the photo 📷 ] <----------------`);
   await Promise.all([
-    ctcImage[i].p.ImageView({
-      getImageId: (imgId) => {},
-      getImagePart: (imgPart) => {},
-      getImageValue: (imgValue) => {
-        imageValueFromNetwork = imageValueFromNetwork + imgValue;
-      },
-      getImageComment: (imgComment) => {},
+    ctcPhotos.p.ViewPhoto({
+      getPhotoId: (photoId) => {console.log(`PhotoId: ${photoId}`)},
+      getIpfsHash: (ipfsHash) => {console.log(`IpfsHash: ${ipfsHash}`)},
+      getComment: (comment) => {console.log(`Comment: ${comment}`)},
     }),
   ]);
-}
-console.log(`******Image base64 string from the network******\n ${imageValueFromNetwork}`)

@@ -5,35 +5,31 @@
  * Picha Backend
  */
 export const main = Reach.App(() => {
-  const ImgSave = Participant('ImgSave', {
-    imgId: UInt,
-    imgPart: UInt,
-    imageValue: Bytes(800),
+  const A = Participant('AddPhoto', {
+    photoId: UInt,
+    ipfsHash: Bytes(128),
     comment: Bytes(128),
   });
-  const ImageView = Participant('ImageView', {
-    getImageId: Fun([UInt], Null),
-    getImagePart: Fun([UInt], Null),
-    getImageValue: Fun([Bytes(800)], Null),
-    getImageComment: Fun([Bytes(128)], Null),
+  const V = Participant('ViewPhoto', {
+    getPhotoId: Fun([UInt], Null),
+    getIpfsHash: Fun([Bytes(128)], Null),
+    getComment: Fun([Bytes(128)], Null),
   });
   init();
 
-  ImgSave.only(() => {
-    const imgId = declassify(interact.imgId);
-    const imgPart = declassify(interact.imgPart);
-    const imageValue = declassify(interact.imageValue);
+  A.only(() => {
+    const photoId = declassify(interact.photoId);
+    const ipfsHash = declassify(interact.ipfsHash);
     const comment = declassify(interact.comment);
   });
-  ImgSave.publish(imgId,imgPart,imageValue,comment);
+  A.publish(photoId,ipfsHash,comment);
   commit();
 
 
-  ImageView.only(() => {
-    interact.getImageId(imgId);
-    interact.getImagePart(imgPart);
-    interact.getImageValue(imageValue);
-    interact.getImageComment(comment);
+  V.only(() => {
+    interact.getPhotoId(photoId);
+    interact.getIpfsHash(ipfsHash);
+    interact.getComment(comment);
   });
   exit();
 })
