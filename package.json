@@ -1,12 +1,5 @@
 {
-  "name": "@reach-sh/picha",
-  "type": "module",
   "dependencies": {
-  },
-  "author": "reach.sh",
-  "license": "Apache-2.0",
-  "scripts": {
-    "lint": "eslint --ignore-path .gitignore --ext .mjs .",
-    "index": "node --experimental-modules --unhandled-rejections=strict index.mjs"
+    "@material-ui/core": "^4.12.4"
   }
 }
