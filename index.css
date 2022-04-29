@@ -1,19 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-}
 body {
-  color: #262626;
-  font-size: 14px;
-  line-height: 18px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.App {
+  text-align: center;
+}
+
 h1 {
   font-family: 'Pacifico', cursive;
 }
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+input[type=number] {
+  font-size: calc(10px + 2vmin);
+  width: 4em;
+}
+
+button {
+  font-size: calc(10px + 2vmin);
+}
+
+textarea {
+  font-size: calc(10px + 2vmin);
+}
+
+.ContractInfo {
+  font-size: calc(10px + 1vmin);
+  text-align: left;
+  width: 90vw;
+  height: 7em;
+  padding: 2vw;
+  overflow-x: scroll;
+  white-space: pre;
+}
+
+/*
+ ------Theme------------
+*/
+.home_image {
+  width: 100%;
+  height: auto;
+}
+
+.picha_font {
+  font-family: 'Ubuntu', cursive;
+}
+
 .app {
   background-color: #fafafa;
   min-height: 100vh;
@@ -135,4 +191,93 @@ input:focus {
 
 .authFooter a {
   color: #0095f6;
+}
+
+/*upload*/
+.imageUpload {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin-bottom: 25px;
+}
+
+.progress {
+  width: 100%;
+}
+
+.uploadCapBtn {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.uploadCap {
+  width: 70%;
+}
+
+.uploadBtn {
+  width: 30%;
+}
+
+/*post*/
+.post {
+  background-color: white;
+  border: 1px solid lightgray;
+  margin-bottom: 45px;
+}
+.post__image {
+  width: 100%;
+  object-fit: contain;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+.post__text {
+  font-weight: normal;
+  padding: 15px 20px;
+}
+.post__header {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+}
+.post__avatar {
+  margin-right: 10px;
+}
+
+.post__comments {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  padding: 10px 20px 10px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.comment__form {
+  margin: 0px 20px 20px 20px;
+}
+
+.comment__wrapper {
+  display: flex;
+  width: inherit;
+  background-color: #fafafa;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  padding: 8px;
+}
+
+.comment__wrapper input {
+  width: 70%;
+  border: none;
+  background: transparent;
+}
+
+.comment__wrapper input:focus {
+  border: none;
+}
+
+.comment__wrapper button {
+  width: 30%;
+  text-align: center;
 }
